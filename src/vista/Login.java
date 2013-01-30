@@ -74,6 +74,7 @@ public class Login extends JFrame {
 		
 		JMenu mnNewMenu_4 = new JMenu("Contacto");
 		menuBar.add(mnNewMenu_4);
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -122,6 +123,14 @@ public class Login extends JFrame {
 		contentPane.add(btnOlvidoContrasea);
 		
 		JButton btnNewButton = new JButton("Registrarse");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				CrearUsuario miUsuario = new CrearUsuario();
+				miUsuario.setVisible(true);
+				miUsuario.setDefaultCloseOperation(1);
+			}
+		});
 		btnNewButton.setBounds(325, 218, 109, 23);
 		contentPane.add(btnNewButton);
 		

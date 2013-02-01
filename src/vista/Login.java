@@ -104,10 +104,12 @@ public class Login extends JFrame {
 		btnIngresar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				AdminUsuario miAdmin = new AdminUsuario();
+				String NombreUsuario= textField.getText();
+				AdminUsuario miAdmin = new AdminUsuario(NombreUsuario);
+				//miAdmin.setNombre(NombreUsuario);
 				miAdmin.setVisible(true);
-				miAdmin.setDefaultCloseOperation(1);
 				
+				dispose();
 				
 				
 			}
@@ -129,6 +131,7 @@ public class Login extends JFrame {
 				CrearUsuario miUsuario = new CrearUsuario();
 				miUsuario.setVisible(true);
 				miUsuario.setDefaultCloseOperation(1);
+				dispose();
 			}
 		});
 		btnNewButton.setBounds(325, 218, 109, 23);

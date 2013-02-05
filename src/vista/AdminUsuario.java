@@ -33,6 +33,7 @@ import javax.swing.JButton;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JTabbedPane;
+import javax.swing.JSeparator;
 
 public class AdminUsuario extends JFrame {
 
@@ -74,7 +75,7 @@ public class AdminUsuario extends JFrame {
 				
 			}
 		});
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -83,26 +84,30 @@ public class AdminUsuario extends JFrame {
 		this.Nombre = miNombre;
 		
 		JLabel lblNewLabel = new JLabel("Bienvenido "+this.Nombre);
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblNewLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-		lblNewLabel.setBounds(10, 11, 414, 14);
+		lblNewLabel.setBounds(10, 11, 195, 14);
 		contentPane.add(lblNewLabel);
 		
-		final JComboBox comboBox = new JComboBox();
+		JComboBox comboBox = new JComboBox();
 		comboBox.addItemListener(new ItemListener() 
 		{
-			
-		public void itemStateChanged(ItemEvent arg0) 
-		{
-				String itemSel = (String) comboBox.getSelectedItem();
-				JOptionPane.showMessageDialog( null, ""+itemSel );				
-		}
-	});
+			public void itemStateChanged(ItemEvent arg0) 
+			{
+				if(comboBox.getSelectedItem() == "Administrar imagenes"){
+					AdminImagenes miAdminImagenes = new AdminImagenes();
+					miAdminImagenes.setVisible(true);
+					miAdminImagenes.setDefaultCloseOperation(1);
+					dispose();
+				}
+				
+			}
+		});
 		
 
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {""}));
-		comboBox.setBounds(22, 63, 178, 20);
+		comboBox.setBounds(246, 8, 178, 20);
 		contentPane.add(comboBox);
 		comboBox.addItem("Administrar imagenes");
         comboBox.addItem("Configuracion de la cuenta");
@@ -111,37 +116,52 @@ public class AdminUsuario extends JFrame {
         
         JButton btnNewButton = new JButton("Atras");
         btnNewButton.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		
+        	
+      public void actionPerformed(ActionEvent e) 
+      {
         	Login miLogin = new Login();
         	miLogin.setVisible(true);
         	miLogin.setDefaultCloseOperation(1);
         	dispose();
-        		
-        		
-        	}
+       }
         });
         
         
         
-        btnNewButton.setBounds(311, 37, 89, 23);
+        btnNewButton.setBounds(345, 218, 89, 23);
         contentPane.add(btnNewButton);
-        
+        /************************************/
         JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-        tabbedPane.setBounds(22, 111, 389, 119);
+        tabbedPane.setBounds(10, 56, 414, 137);
         contentPane.add(tabbedPane);
         
-        JPanel p1=new JPanel(null); 
-        JLabel lbl1 = new JLabel("panel uno");
+        JLabel etiqueta1 = new JLabel( "panel uno", SwingConstants.CENTER );
+        JPanel panel1 = new JPanel();
+        panel1.add( etiqueta1 ); 
+        tabbedPane.addTab( "Ficha uno", null, panel1, "Primer panel" ); 
+        /************************************/
         
-        JPanel p2=new JPanel(null); 
-        JLabel lbl2 = new JLabel("panel dos");
-		
+        /***********************************/
+        JLabel etiqueta2 = new JLabel( "panel dos", SwingConstants.CENTER );
+        JPanel panel2 = new JPanel();
+        panel2.add( etiqueta2 ); 
+        tabbedPane.addTab( "Ficha dos", null, panel2, "Segundo panel" ); 
+        /************************************/
+        /**********************************/
+        
+        JLabel etiqueta3 = new JLabel( "panel tres", SwingConstants.CENTER );
+        JPanel panel3 = new JPanel();
+        panel3.add( etiqueta3 ); 
+        tabbedPane.addTab( "Ficha tres", null, panel3, "Tercer panel" ); 
+        
+        /************************************/
+        /**********************************/
+ 
         
         
-        
-        
-        
+        JSeparator separator = new JSeparator();
+        separator.setBounds(10, 204, 414, -8);
+        contentPane.add(separator);
         
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -158,11 +178,14 @@ public class AdminUsuario extends JFrame {
 		JMenu mnNewMenu_2 = new JMenu("Clasificados");
 		mnNewMenu_2.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+			
+			
+			
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
 				
-			}
+		}
 			
 	
 		});
@@ -181,9 +204,5 @@ public class AdminUsuario extends JFrame {
 		
 		
 	}
-	
-	public void setNombre(String miNombre)
-		{
-			this.Nombre = miNombre;
-		}
+
 }
